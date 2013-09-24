@@ -14,7 +14,7 @@ public class AsterSc : MonoBehaviour {
 		
 		rigidbody.velocity = Vector3.zero;
 		
-		rigidbody.AddRelativeForce(new Vector3(0,0,3000 * Time.deltaTime));
+		rigidbody.AddRelativeForce(new Vector3(0,0,4000 * Time.deltaTime));
 	}
 	
 	void OnTriggerEnter(Collider col)
@@ -32,9 +32,12 @@ public class AsterSc : MonoBehaviour {
 					Instantiate(Resources.Load("SmallAst"),transform.position,Quaternion.identity);
 				}
 			}
+			GameObject control = GameObject.Find("ControllObject");
+			control.GetComponent<GameCtrlSc>().ScoreChange(50);
 			
 			Destroy(col.gameObject);
 			Destroy(gameObject);
+			
 		}
 	}
 }

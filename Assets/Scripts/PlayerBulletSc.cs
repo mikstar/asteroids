@@ -6,7 +6,7 @@ public class PlayerBulletSc : MonoBehaviour {
 	public float lifeTime;
 	// Use this for initialization
 	void Start () {
-		Destroy(gameObject, 2);
+		Destroy(gameObject, 1.5f);
 	}
 	
 	// Update is called once per frame
@@ -14,7 +14,7 @@ public class PlayerBulletSc : MonoBehaviour {
 		
 		rigidbody.velocity = Vector3.zero;
 		
-		rigidbody.AddRelativeForce(new Vector3(0,0,22000 * Time.deltaTime));
+		rigidbody.AddRelativeForce(new Vector3(0,0,30000 * Time.deltaTime));
 		
 	}
 }
