@@ -26,6 +26,8 @@ public class AlienSc : MonoBehaviour {
 		if(col.tag == Tags.player)
 		{
 			Destroy(col.gameObject);
+			GameObject control = GameObject.Find("ControllObject");
+			control.GetComponent<GameCtrlSc>().PlayerSpawn();
 		}
 		else if(col.tag == Tags.bullet)
 		{

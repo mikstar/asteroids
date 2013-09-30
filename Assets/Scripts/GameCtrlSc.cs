@@ -5,13 +5,18 @@ public class GameCtrlSc : MonoBehaviour {
 	
 	private int score = 0;
 	private float alienTime = 8;
+	private int lives = 3;
 	// Use this for initialization
 	void Start () {
 		
 		//GameObject player = GameObject.FindGameObjectWithTag("Player");
+		Instantiate(Resources.Load("Player"),new Vector3(0,0,0),Quaternion.identity);
 		
 		SpawnAster(3);
 		ScoreChange(0);
+		
+		GameObject scoreHud = GameObject.Find("LivesHud");
+		scoreHud.GetComponent<GUIText>().text = "Lives:" + lives;
 	}
 	
 	// Update is called once per frame
@@ -28,13 +33,27 @@ public class GameCtrlSc : MonoBehaviour {
 		
 	}
 	
+	public void PlayerSpawn()
+	{
+		
+		lives --;
+		
+		if(lives > 0)
+		{	
+		 Instantiate(Resources.Load("Player"),new Vector3(0,0,0),Quaternion.identity);
+		}
+		
+		GameObject scoreHud = GameObject.Find("LivesHud");
+		scoreHud.GetComponent<GUIText>().text = "Lives:" + lives;
+	}
+	
 	public void ScoreChange(int change)
 	{
 		score += change;
 		
 		
 		GameObject scoreHud = GameObject.Find("ScoreHud");
-		scoreHud.GetComponent<GUIText>().text = "" + score;
+		scoreHud.GetComponent<GUIText>().text = "Score:" + score;
 	}
 	
 	public void SpawnAster(int astrAmount)

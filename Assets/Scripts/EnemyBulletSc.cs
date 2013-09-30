@@ -23,6 +23,8 @@ public class EnemyBulletSc : MonoBehaviour {
 		if(col.tag == Tags.player)
 		{
 			Destroy(col.gameObject);
+			GameObject control = GameObject.Find("ControllObject");
+			control.GetComponent<GameCtrlSc>().PlayerSpawn();
 			Destroy(gameObject);
 		}
 	}
