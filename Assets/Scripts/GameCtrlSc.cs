@@ -6,6 +6,9 @@ public class GameCtrlSc : MonoBehaviour {
 	private int score = 0;
 	private float alienTime = 8;
 	private int lives = 3;
+	private bool playerSpawn = false;
+	private float playerSpwnTime;
+	
 	// Use this for initialization
 	void Start () {
 		
@@ -31,17 +34,33 @@ public class GameCtrlSc : MonoBehaviour {
 			Instantiate(Resources.Load("AlienShip"),astPos,Quaternion.identity);
 		}
 		
+		if(playerSpawn)
+		{
+			playerSpwnTime -= Time.deltaTime;
+			if(playerSpwnTime < 0)
+			{
+				if(lives > 0)
+				{	
+				 Instantiate(Resources.Load("Player"),new Vector3(0,0,0),Quaternion.identity);
+				}
+				playerSpawn = false;
+			}
+		}
+		
 	}
 	
 	public void PlayerSpawn()
 	{
 		
 		lives --;
-		
+		playerSpawn = true;
+		playerSpwnTime = 1;
+		/*
 		if(lives > 0)
 		{	
 		 Instantiate(Resources.Load("Player"),new Vector3(0,0,0),Quaternion.identity);
 		}
+		*/
 		
 		GameObject scoreHud = GameObject.Find("LivesHud");
 		scoreHud.GetComponent<GUIText>().text = "Lives:" + lives;
